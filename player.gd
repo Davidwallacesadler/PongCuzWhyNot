@@ -24,13 +24,14 @@ func _get_paddle_velocity() -> float:
 		
 
 func _get_ai_velocity() -> float:
-	var delta_y = ball.global_position.y - global_position.y
 	var delta_x = ball.global_position.x - global_position.x
-	var ball_is_too_far = Util.abs_value(delta_x) > 500
-	if ball_is_too_far:
+	var x_mag = Util.abs_value(delta_x)
+	if x_mag > 500:
 		return 0
+	
+	var delta_y = ball.global_position.y - global_position.y
 	if delta_y < 0:
-		return clampf(0, delta_y, -SPEED)
+		return clampf(delta_y, -SPEED, 0)
 	else:
 		return clampf(delta_y, 0, SPEED)
 	

@@ -43,12 +43,12 @@ func _reset_ball_and_serve(player: Player.Type) -> void:
 	
 
 func _serve_ball_to_player(player: Player.Type) -> void:
-#	var rng = RandomNumberGenerator.new()
-#	var random_y = rng.randf_range(-3, 3)
+	var rng = RandomNumberGenerator.new()
+	var random_y = rng.randf_range(-2, 2)
 	if player == Player.Type.ONE:
-		_ball.apply_impulse(Vector2(-5, 1))
+		_ball.apply_impulse(Vector2(-5, random_y))
 	else:
-		_ball.apply_impulse(Vector2(5, 1))
+		_ball.apply_impulse(Vector2(5, random_y))
 	
 
 func _create_new_ball() -> void:
