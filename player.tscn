@@ -1,40 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4054tlrwatfv"]
 
-[sub_resource type="GDScript" id="GDScript_2lo22"]
-script/source = "extends CharacterBody2D
-
-@export var player_type: Type
-
-const SPEED = 300.0
-
-func _physics_process(delta):
-	var direction = _get_direction_for_player()
-	if direction:
-		velocity.y = direction * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-		
-	move_and_slide()
-
-
-func _get_direction_for_player() -> float:
-	if (player_type == Type.ONE):
-		return Input.get_axis(\"ui_up\", \"ui_down\")
-	else:
-		return Input.get_axis(\"ui_right\", \"ui_left\")
-
-enum Type {
-	ONE, TWO
-}
-"
+[ext_resource type="Script" path="res://player.gd" id="1_dbrvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u4hb"]
 size = Vector2(50, 150)
 
-[node name="Player1" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 motion_mode = 1
-script = SubResource("GDScript_2lo22")
+script = ExtResource("1_dbrvn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
