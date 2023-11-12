@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce5miyib2r57n"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_7id13"]
+[ext_resource type="PackedScene" uid="uid://c4054tlrwatfv" path="res://player.tscn" id="1_b4m5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8omi"]
+size = Vector2(223.5, 583.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_301e8"]
+size = Vector2(1263, 25)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label")]
+script = ExtResource("1_7id13")
+player_1_goal = NodePath("Player1Goal")
+player_2_goal = NodePath("Player2Goal")
+ball_container = NodePath("BallContainer")
+player_1_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Player1ScoreLabel")
+player_2_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Player2ScoreLabel")
+
+[node name="Player1" parent="." instance=ExtResource("1_b4m5m")]
+position = Vector2(136, 309)
+
+[node name="Player2" parent="." instance=ExtResource("1_b4m5m")]
+position = Vector2(1027, 300)
+player_type = 1
+
+[node name="Player1Goal" type="Area2D" parent="."]
+position = Vector2(-176, 312)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Goal"]
+shape = SubResource("RectangleShape2D_k8omi")
+metadata/_edit_lock_ = true
+
+[node name="Player2Goal" type="Area2D" parent="."]
+position = Vector2(1324, 308)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Goal"]
+shape = SubResource("RectangleShape2D_k8omi")
+metadata/_edit_lock_ = true
+
+[node name="TopGuardRail" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopGuardRail"]
+position = Vector2(567, -2)
+shape = SubResource("RectangleShape2D_301e8")
+
+[node name="BottomGuardRail" type="StaticBody2D" parent="."]
+position = Vector2(0, 625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomGuardRail"]
+position = Vector2(570, 1)
+shape = SubResource("RectangleShape2D_301e8")
+
+[node name="BallContainer" type="Node2D" parent="."]
+position = Vector2(575, 312)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Player1ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Player2ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="CenterLine" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(2.5, 0)
+layout_mode = 2
+size_flags_horizontal = 4
