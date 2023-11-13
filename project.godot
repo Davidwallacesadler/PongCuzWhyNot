@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="pong_cuz_why_not"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Util="*res://util.gd"
+Util="*res://scripts/util.gd"
 
 [display]
 

@@ -11,7 +11,7 @@ extends Node2D
 @export var player_1_score_label: Label
 @export var player_2_score_label: Label
 
-var _ball_scene = preload("res://ball.tscn")
+var _ball_scene = preload("res://scenes/ball.tscn")
 var _ball: RigidBody2D
 
 var _player_1_score := 0

@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://ce5miyib2r57n"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_k5a38"]
-[ext_resource type="PackedScene" uid="uid://c4054tlrwatfv" path="res://player.tscn" id="2_bjs8a"]
-[ext_resource type="PackedScene" uid="uid://wjvftyk7khci" path="res://guard_rail.tscn" id="3_yuppy"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_uqdev"]
+[ext_resource type="PackedScene" uid="uid://c4054tlrwatfv" path="res://scenes/player.tscn" id="2_f1bfh"]
+[ext_resource type="PackedScene" uid="uid://wjvftyk7khci" path="res://scenes/guard_rail.tscn" id="3_0avy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8omi"]
 size = Vector2(223.5, 583.75)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label")]
-script = ExtResource("1_k5a38")
+script = ExtResource("1_uqdev")
 player_1 = NodePath("Player1")
 player_2 = NodePath("Player2")
 player_1_goal = NodePath("Player1Goal")
@@ -17,10 +17,10 @@ ball_container = NodePath("BallContainer")
 player_1_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Player1ScoreLabel")
 player_2_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Player2ScoreLabel")
 
-[node name="Player1" parent="." instance=ExtResource("2_bjs8a")]
+[node name="Player1" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(38, 309)
 
-[node name="Player2" parent="." instance=ExtResource("2_bjs8a")]
+[node name="Player2" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(1113, 316)
 player_type = 1
 player_controlled = false
@@ -43,10 +43,10 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_k8omi")
 metadata/_edit_lock_ = true
 
-[node name="TopGuardRail" parent="." instance=ExtResource("3_yuppy")]
+[node name="TopGuardRail" parent="." instance=ExtResource("3_0avy0")]
 position = Vector2(575, 13)
 
-[node name="BottomGuardRail" parent="." instance=ExtResource("3_yuppy")]
+[node name="BottomGuardRail" parent="." instance=ExtResource("3_0avy0")]
 position = Vector2(576, 568)
 
 [node name="BallContainer" type="Node2D" parent="."]
