@@ -8,3 +8,4 @@ func abs_value(float_num: float) -> float:
 	if (float_num < 0):
 		return -float_num
 	return float_num
+	

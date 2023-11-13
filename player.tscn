@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_dbrvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u4hb"]
-size = Vector2(50, 150)
+size = Vector2(25, 125)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -16,10 +16,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -75.0
-offset_right = 25.0
-offset_bottom = 75.0
+offset_left = -12.5
+offset_top = -62.5
+offset_right = 12.5
+offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
 
