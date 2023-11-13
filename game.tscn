@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" path="res://game.gd" id="1_k5a38"]
 [ext_resource type="PackedScene" uid="uid://c4054tlrwatfv" path="res://player.tscn" id="2_bjs8a"]
+[ext_resource type="PackedScene" uid="uid://wjvftyk7khci" path="res://guard_rail.tscn" id="3_yuppy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8omi"]
 size = Vector2(223.5, 583.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_301e8"]
-size = Vector2(1247.5, 25)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label")]
 script = ExtResource("1_k5a38")
@@ -20,15 +18,15 @@ player_1_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Playe
 player_2_score_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Player2ScoreLabel")
 
 [node name="Player1" parent="." instance=ExtResource("2_bjs8a")]
-position = Vector2(61, 309)
+position = Vector2(38, 309)
 
 [node name="Player2" parent="." instance=ExtResource("2_bjs8a")]
-position = Vector2(1093, 316)
+position = Vector2(1113, 316)
 player_type = 1
 player_controlled = false
 
 [node name="Player1Goal" type="Area2D" parent="."]
-position = Vector2(-176, 312)
+position = Vector2(-123, 312)
 collision_layer = 3
 collision_mask = 3
 
@@ -37,7 +35,7 @@ shape = SubResource("RectangleShape2D_k8omi")
 metadata/_edit_lock_ = true
 
 [node name="Player2Goal" type="Area2D" parent="."]
-position = Vector2(1324, 308)
+position = Vector2(1276, 308)
 collision_layer = 3
 collision_mask = 3
 
@@ -45,21 +43,11 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_k8omi")
 metadata/_edit_lock_ = true
 
-[node name="TopGuardRail" type="StaticBody2D" parent="."]
-metadata/_edit_lock_ = true
+[node name="TopGuardRail" parent="." instance=ExtResource("3_yuppy")]
+position = Vector2(575, 13)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopGuardRail"]
-position = Vector2(567, -2)
-shape = SubResource("RectangleShape2D_301e8")
-metadata/_edit_lock_ = true
-
-[node name="BottomGuardRail" type="StaticBody2D" parent="."]
-position = Vector2(-5, 592)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomGuardRail"]
-position = Vector2(577.75, 1)
-shape = SubResource("RectangleShape2D_301e8")
-metadata/_edit_lock_ = true
+[node name="BottomGuardRail" parent="." instance=ExtResource("3_yuppy")]
+position = Vector2(576, 568)
 
 [node name="BallContainer" type="Node2D" parent="."]
 position = Vector2(575, 312)

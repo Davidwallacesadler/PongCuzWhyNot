@@ -27,13 +27,13 @@ func _get_ai_direction() -> float:
 	var delta_x = ball.global_position.x - global_position.x
 	var delta_y = ball.global_position.y - global_position.y
 	
-	# Don't move the paddle if its too far away:
+	# Don't move the paddle if the ball is "too far" away:
 	var x_distance = Util.abs_value(delta_x)
-	var x_view_disatnce: float = 285
-	if x_distance > x_view_disatnce:
+	var x_view_distance: float = 250
+	if x_distance > x_view_distance:
 		return 0
 	
-	# Don't move the paddle when delta_y is small:
+	# Don't move the paddle when delta_y is "small":
 	var movement_threshold: float = 50
 	if Util.abs_value(delta_y) < movement_threshold:
 		return 0
