@@ -27,7 +27,7 @@ ai_difficulty = 2
 position = Vector2(1113, 355)
 player_number = 1
 player_controlled = false
-ai_difficulty = 2
+ai_difficulty = 3
 
 [node name="Player1Goal" type="Area2D" parent="."]
 position = Vector2(-117, 358)

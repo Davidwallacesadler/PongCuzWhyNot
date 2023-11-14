@@ -39,11 +39,12 @@ func _get_ai_direction() -> float:
 	if Util.abs_value(delta_y) < movement_threshold:
 		return 0
 	
+	var cheat_multiplier = _get_ai_cheat_movement_multiplier()
 	# Move the paddle based on direction to ball:
 	if delta_y < 0:
-		return -1
+		return -1 * cheat_multiplier
 	else:
-		return 1
+		return 1 * cheat_multiplier
 	
 
 func _get_ai_x_view_distance() -> float:
@@ -68,8 +69,13 @@ func _get_ai_movement_threshold() -> float:
 		AiDifficulty.HARD:
 			return 25
 		AiDifficulty.IMPOSSIBLE:
-			return 0
+			return 25
 	return 30
+
+func _get_ai_cheat_movement_multiplier() -> float:
+	if ai_difficulty == AiDifficulty.IMPOSSIBLE:
+		return 2
+	return 1
 
 func _get_player_direction() -> float:
 	if (player_number == Number.ONE):
