@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var player_type: Type
+@export var player_number: Number
 @export var player_controlled: bool = true
 
 const SPEED = 300.0
@@ -46,12 +46,12 @@ func _get_ai_direction() -> float:
 	
 
 func _get_player_direction() -> float:
-	if (player_type == Type.ONE):
+	if (player_number == Number.ONE):
 		return Input.get_axis("ui_up", "ui_down")
 	else:
 		return Input.get_axis("ui_right", "ui_left")
 		
 
-enum Type {
+enum Number {
 	ONE, TWO
 }

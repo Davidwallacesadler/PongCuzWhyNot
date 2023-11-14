@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8omi"]
 size = Vector2(223.5, 583.75)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label", "audio_player")]
 script = ExtResource("1_uqdev")
 player_1 = NodePath("Player1")
 player_2 = NodePath("Player2")
@@ -16,6 +16,7 @@ player_2_goal = NodePath("Player2Goal")
 ball_container = NodePath("BallContainer")
 player_1_score_label = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Player1ScoreLabel")
 player_2_score_label = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Player2ScoreLabel")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Player1" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(38, 348)
@@ -23,11 +24,10 @@ player_controlled = false
 
 [node name="Player2" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(1113, 355)
-player_type = 1
 player_controlled = false
 
 [node name="Player1Goal" type="Area2D" parent="."]
-position = Vector2(-123, 312)
+position = Vector2(-117, 358)
 collision_layer = 3
 collision_mask = 3
 
@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_k8omi")
 metadata/_edit_lock_ = true
 
 [node name="Player2Goal" type="Area2D" parent="."]
-position = Vector2(1276, 308)
+position = Vector2(1272, 355)
 collision_layer = 3
 collision_mask = 3
 
@@ -99,3 +99,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

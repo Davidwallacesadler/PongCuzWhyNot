@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://tgmj5tu3amgl"]
+[gd_scene load_steps=4 format=3 uid="uid://tgmj5tu3amgl"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_whwn8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s444i"]
 friction = 0.0
@@ -12,9 +14,12 @@ collision_layer = 2
 mass = 0.01
 physics_material_override = SubResource("PhysicsMaterial_s444i")
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 lock_rotation = true
 linear_damp_mode = 1
 angular_damp = 19.31
+script = ExtResource("1_whwn8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
