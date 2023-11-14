@@ -57,11 +57,22 @@ func _create_new_ball() -> void:
 	
 
 func _on_ball_collision(body: Node2D) -> void:
-	if body is Player:
+	if body as Player:
+		# Adding a random impulse to make the gameplay less stale
+		_apply_random_paddle_impulse(body.player_number)
 		_play_ball_paddle_hit_sound()
 		return
 	if body is StaticBody2D:
 		_play_ball_wall_hit_sound()
+	
+
+func _apply_random_paddle_impulse(player_number: Player.Number) -> void:
+	var rng = RandomNumberGenerator.new()
+	var random_y = rng.randf_range(-3, 3)
+	if (player_number == Player.Number.ONE):
+		_ball.apply_impulse(Vector2(1, random_y))
+	else:
+		_ball.apply_impulse(Vector2(-1, random_y))
 	
 
 func _reset_ball_and_serve(player: Player.Number) -> void:

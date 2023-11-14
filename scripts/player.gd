@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var player_number: Number
 @export var player_controlled: bool = true
+@export var ai_difficulty: AiDifficulty
 
 const SPEED = 300.0
 
@@ -29,12 +30,12 @@ func _get_ai_direction() -> float:
 	
 	# Don't move the paddle if the ball is "too far" away:
 	var x_distance = Util.abs_value(delta_x)
-	var x_view_distance: float = 250
+	var x_view_distance = _get_ai_x_view_distance()
 	if x_distance > x_view_distance:
 		return 0
 	
 	# Don't move the paddle when delta_y is "small":
-	var movement_threshold: float = 50
+	var movement_threshold = _get_ai_movement_threshold()
 	if Util.abs_value(delta_y) < movement_threshold:
 		return 0
 	
@@ -45,6 +46,31 @@ func _get_ai_direction() -> float:
 		return 1
 	
 
+func _get_ai_x_view_distance() -> float:
+	match(ai_difficulty):
+		AiDifficulty.EASY:
+			return 150 
+		AiDifficulty.MEDIUM:
+			return 300
+		AiDifficulty.HARD:
+			return 600
+		AiDifficulty.IMPOSSIBLE:
+			return 1000
+	return 300
+	
+
+func _get_ai_movement_threshold() -> float:
+	match(ai_difficulty):
+		AiDifficulty.EASY:
+			return 50 
+		AiDifficulty.MEDIUM:
+			return 30
+		AiDifficulty.HARD:
+			return 25
+		AiDifficulty.IMPOSSIBLE:
+			return 0
+	return 30
+
 func _get_player_direction() -> float:
 	if (player_number == Number.ONE):
 		return Input.get_axis("ui_up", "ui_down")
@@ -54,4 +80,8 @@ func _get_player_direction() -> float:
 
 enum Number {
 	ONE, TWO
+}
+
+enum AiDifficulty {
+	EASY, MEDIUM, HARD, IMPOSSIBLE
 }

@@ -20,11 +20,12 @@ audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Player1" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(38, 348)
-player_controlled = false
 
 [node name="Player2" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(1113, 355)
+player_number = 1
 player_controlled = false
+ai_difficulty = 1
 
 [node name="Player1Goal" type="Area2D" parent="."]
 position = Vector2(-117, 358)
