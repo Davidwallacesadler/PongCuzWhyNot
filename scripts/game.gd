@@ -48,14 +48,6 @@ func _on_ball_entered_player_2_goal(_body: Node2D) -> void:
 	_reset_ball_and_serve.call_deferred(Player.Number.TWO)
 	
 
-func _create_new_ball() -> void:
-	_ball = _ball_scene.instantiate()
-	_ball.body_entered.connect(_on_ball_collision)
-	player_1.ball = _ball
-	player_2.ball = _ball
-	ball_container.add_child(_ball)
-	
-
 func _on_ball_collision(body: Node2D) -> void:
 	if body as Player:
 		# Adding a random impulse to make the gameplay less stale
@@ -66,13 +58,21 @@ func _on_ball_collision(body: Node2D) -> void:
 		_play_ball_wall_hit_sound()
 	
 
+func _create_new_ball() -> void:
+	_ball = _ball_scene.instantiate()
+	_ball.body_entered.connect(_on_ball_collision)
+	player_1.ball = _ball
+	player_2.ball = _ball
+	ball_container.add_child(_ball)
+	
+
 func _apply_random_paddle_impulse(player_number: Player.Number) -> void:
 	var rng = RandomNumberGenerator.new()
 	var random_y = rng.randf_range(-3, 3)
 	if (player_number == Player.Number.ONE):
-		_ball.apply_impulse(Vector2(1, random_y))
+		_ball.apply_impulse(Vector2(0, random_y))
 	else:
-		_ball.apply_impulse(Vector2(-1, random_y))
+		_ball.apply_impulse(Vector2(0, random_y))
 	
 
 func _reset_ball_and_serve(player: Player.Number) -> void:
@@ -82,12 +82,12 @@ func _reset_ball_and_serve(player: Player.Number) -> void:
 	
 
 func _serve_ball_to_player(player: Player.Number) -> void:
-	var rng = RandomNumberGenerator.new()
-	var random_y = rng.randf_range(2, 5)
+#	var rng = RandomNumberGenerator.new()
+#	var random_y = rng.randf_range(2, 5)
 	if player == Player.Number.ONE:
-		_ball.apply_impulse(Vector2(-5, random_y))
+		_ball.apply_impulse(Vector2(-5, 0))
 	else:
-		_ball.apply_impulse(Vector2(5, random_y))
+		_ball.apply_impulse(Vector2(5, 0))
 	
 
 func _update_player_1_score_label() -> void:
