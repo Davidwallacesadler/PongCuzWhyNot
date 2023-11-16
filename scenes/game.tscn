@@ -7,27 +7,27 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8omi"]
 size = Vector2(223.5, 583.75)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label", "audio_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "player_1_goal", "player_2_goal", "ball_container", "player_1_score_label", "player_2_score_label", "audio_player")]
+process_mode = 1
 script = ExtResource("1_uqdev")
 player_1 = NodePath("Player1")
 player_2 = NodePath("Player2")
 player_1_goal = NodePath("Player1Goal")
 player_2_goal = NodePath("Player2Goal")
 ball_container = NodePath("BallContainer")
-player_1_score_label = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Player1ScoreLabel")
-player_2_score_label = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Player2ScoreLabel")
+player_1_score_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1ScoreLabel")
+player_2_score_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2ScoreLabel")
 audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Player1" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(38, 348)
-player_controlled = false
 ai_difficulty = 2
 
 [node name="Player2" parent="." instance=ExtResource("2_f1bfh")]
 position = Vector2(1113, 355)
 player_number = 1
 player_controlled = false
-ai_difficulty = 3
+ai_difficulty = 2
 
 [node name="Player1Goal" type="Area2D" parent="."]
 position = Vector2(-117, 358)
@@ -56,39 +56,33 @@ position = Vector2(576, 635)
 [node name="BallContainer" type="Node2D" parent="."]
 position = Vector2(575, 350)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1155.0
+offset_bottom = 638.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
-metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Player1ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Player1ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "0"
 metadata/_edit_lock_ = true
 
-[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Player2ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Player2ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
@@ -96,7 +90,7 @@ text = "0"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="CenterLine" type="ColorRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="CenterLine" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.5, 0)
 layout_mode = 2
 size_flags_horizontal = 4

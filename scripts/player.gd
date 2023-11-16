@@ -22,6 +22,13 @@ func _get_paddle_direction() -> float:
 		return _get_player_direction()
 	else:
 		return _get_ai_direction()
+	
+
+func _get_player_direction() -> float:
+	if (player_number == Number.ONE):
+		return Input.get_axis("ui_up", "ui_down")
+	else:
+		return Input.get_axis("ui_right", "ui_left")
 		
 
 func _get_ai_direction() -> float:
@@ -56,7 +63,7 @@ func _get_ai_x_view_distance() -> float:
 		AiDifficulty.HARD:
 			return 600
 		AiDifficulty.IMPOSSIBLE:
-			return 600
+			return 450
 	return 300
 	
 
@@ -76,13 +83,6 @@ func _get_ai_cheat_movement_multiplier() -> float:
 	if ai_difficulty == AiDifficulty.IMPOSSIBLE:
 		return 2
 	return 1
-
-func _get_player_direction() -> float:
-	if (player_number == Number.ONE):
-		return Input.get_axis("ui_up", "ui_down")
-	else:
-		return Input.get_axis("ui_right", "ui_left")
-		
 
 enum Number {
 	ONE, TWO

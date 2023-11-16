@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_paused()
+
 @export var player_1: Player
 @export var player_2: Player
 
@@ -23,11 +25,18 @@ var _ball: RigidBody2D
 var _player_1_score := 0
 var _player_2_score := 0
 
+var _is_paused := false
+
 func _ready():
 	_setup_goal_areas()
 	_create_new_ball()
 	_serve_ball_to_player(Player.Number.TWO)
 	
+
+func _input(event):
+	if event.is_action_pressed("escape"):
+#		self.visible = false
+		game_paused.emit()
 
 func _setup_goal_areas() -> void:
 	player_1_goal.body_entered.connect(_on_ball_entered_player_1_goal)
@@ -82,8 +91,6 @@ func _reset_ball_and_serve(player: Player.Number) -> void:
 	
 
 func _serve_ball_to_player(player: Player.Number) -> void:
-#	var rng = RandomNumberGenerator.new()
-#	var random_y = rng.randf_range(2, 5)
 	if player == Player.Number.ONE:
 		_ball.apply_impulse(Vector2(-5, 0))
 	else:
@@ -101,11 +108,15 @@ func _update_player_2_score_label() -> void:
 func _play_ball_wall_hit_sound() -> void:
 	audio_player.stream = _wall_collision_audio
 	audio_player.play()
+	
 
 func _play_ball_paddle_hit_sound() -> void:
 	audio_player.stream = _paddle_collision_audio
 	audio_player.play()
+	
 
 func _play_score_sound() -> void:
 	audio_player.stream = _goal_audio
 	audio_player.play()
+	
+
